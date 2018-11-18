@@ -13,11 +13,11 @@ import com.example.demo.model.Redaction;
 @Component
 public class ApplicationConfiguration extends RepositoryRestConfigurerAdapter {
 
-	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-
-		//config.exposeIdsFor(Personne.class, Article.class, Commentaire.class, Redaction.class);
-	}
+//	@Override
+//	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+//
+//		config.exposeIdsFor(Personne.class, Article.class, Commentaire.class, Redaction.class);
+//	}
 }
 
 //tilman

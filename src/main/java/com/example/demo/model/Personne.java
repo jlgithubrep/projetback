@@ -3,8 +3,6 @@ package com.example.demo.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +40,26 @@ public class Personne implements Serializable {
 	// bi-directional many-to-one association to Redaction
 //	@OneToMany(mappedBy="personne")
 //	private List<Redaction> redactions;
+	
+	@ManyToMany(cascade={CascadeType.PERSIST,
+			CascadeType.REMOVE},fetch = FetchType.EAGER)
+			private List <Role> roles = new ArrayList<Role>();
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public boolean add(Role arg0) {
+		return roles.add(arg0);
+	}
+
+	public boolean remove(Object arg0) {
+		return roles.remove(arg0);
+	}
 
 	public Personne() {
 	}

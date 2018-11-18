@@ -16,8 +16,9 @@ public interface PersonneRepository extends JpaRepository<Personne, Integer> {
 	// http://localhost:8080/personnes/search/findByNom?nom=wick
 
 	// Personne findById(@Param("id") int id);
-	List<Personne> findByNom(@Param("nom") String nom);
-
+	//List<Personne> findByNom(@Param("nom") String nom);
+	Personne findByNom(@Param("nom") String nom);
+	
 	Personne findByNomAndMdp(@Param("nom") String nom, @Param("mdp") String password);
 	
 	
