@@ -110,6 +110,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/**").permitAll()
+		.antMatchers(HttpMethod.PUT, "/**").permitAll()
+		.antMatchers(HttpMethod.DELETE, "/**").permitAll()
 		.anyRequest().fullyAuthenticated();
 		http.httpBasic();
 		http.csrf().disable();
@@ -119,6 +121,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//https://stackoverflow.com/questions/42180028/spring-security-always-return-the-403-accessdeniedpage-after-login
 		//Please, note that by a Spring Security's architectural decision you must prepend 'ROLE_' to you authority:
 		//new SimpleGrantedAuthority("ROLE_" + roleName);
+		
+		
+		//https://www.baeldung.com/role-and-privilege-for-spring-security-registration
 
 	}
 
