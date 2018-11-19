@@ -55,7 +55,7 @@ public class ArticleController {
 	
 	@Secured("ROLE_JOURNALISTE")
 	@GetMapping(value = "/articlesparauteur", params = { "auteur" })
-	public List<Article> sayHello(@RequestParam(value = "auteur") String auteur) {
+	public List<Article> listeArticleParAuteur(@RequestParam(value = "auteur") String auteur) {
 		return articleRepository.findByAuteurArticle(auteur);
 	}
 	

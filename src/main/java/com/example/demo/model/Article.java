@@ -22,7 +22,7 @@ public class Article implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_article")
-	private int idArticle;
+	private Integer idArticle;
 
 	private String auteurArticle;
 
@@ -41,8 +41,8 @@ public class Article implements Serializable {
 	private String titre;
 
 	//bi-directional many-to-one association to Commentaire
-	//@OneToMany(mappedBy="article")
-	@OneToMany
+	//@OneToMany
+	@OneToMany(mappedBy="article")
 	private List<Commentaire> commentaires;
 
 //	//bi-directional many-to-one association to Redaction

@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 
@@ -20,7 +22,7 @@ public class Commentaire implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idCommentaire;
+	private Integer idCommentaire;
 
 	private String auteurCommentaire;
 
@@ -34,6 +36,8 @@ public class Commentaire implements Serializable {
 
 	//bi-directional many-to-one association to Article
 	//@ManyToOne
+	@ManyToOne(cascade=(CascadeType.ALL))
+	@JsonIgnore
 	@JoinColumn(name="idArticle")
 	private Article article;
 
