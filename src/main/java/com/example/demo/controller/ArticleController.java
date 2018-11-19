@@ -35,17 +35,20 @@ public class ArticleController {
 		return articleRepository.findById(id).orElse(null);
 	}
 	
+	@Secured("ROLE_JOURNALISTE")
 	@PostMapping(path="/article", consumes= {"application/json"})
 	public Article addArticle(@RequestBody Article article) {
 		System.out.println(article);
 		return articleRepository.save(article);
 	}
 	
+	@Secured("ROLE_JOURNALISTE")
 	@DeleteMapping(path="/articleDelete/{id}", produces= {"application/json"})
 	public void deleteArticle(@PathVariable("id") int id) {
 		articleRepository.deleteById(id);
 	}
 	
+	@Secured("ROLE_JOURNALISTE")
 	@PutMapping(path="/articleUpdate/{id}", consumes= {"application/json"})
 	public Article updateArticle(@PathVariable("id") int id, @RequestBody Article articleMod) {	
 		Article article = articleRepository.findById(id).orElse(null);
