@@ -18,7 +18,7 @@ public class Personne implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private byte abonne;
 

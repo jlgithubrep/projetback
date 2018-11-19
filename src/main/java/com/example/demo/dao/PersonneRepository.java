@@ -9,14 +9,6 @@ import com.example.demo.model.Personne;
 //@CrossOrigin
 //@RepositoryRestResource(collectionResourceRel = "personnes", itemResourceRel = "personne", path = "personnes")
 public interface PersonneRepository extends JpaRepository<Personne, Integer> {
-
-	// http://localhost:8080/personnes
-	// http://localhost:8080/personnes/2
-
-	// http://localhost:8080/personnes/search/findByNom?nom=wick
-
-	// Personne findById(@Param("id") int id);
-	//List<Personne> findByNom(@Param("nom") String nom);
 	Personne findByNom(@Param("nom") String nom);
 	
 	Personne findByNomAndMdp(@Param("nom") String nom, @Param("mdp") String password);
@@ -25,7 +17,15 @@ public interface PersonneRepository extends JpaRepository<Personne, Integer> {
 	Personne findByMailAndMdp(@Param("mail") String mail, @Param("mdp") String password);
 	
 	
-	public Personne findByMail(String mail);
+	public Personne findByMail(@Param("mail") String mail);
+	// http://localhost:8080/personnes
+	// http://localhost:8080/personnes/2
+
+	// http://localhost:8080/personnes/search/findByNom?nom=wick
+
+	// Personne findById(@Param("id") int id);
+	//List<Personne> findByNom(@Param("nom") String nom);
+
 	
 
 	// http://localhost:8080/personnes/search/findArticleByNom?nom=bob

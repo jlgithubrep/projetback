@@ -18,8 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetailsImpl loadUserByUsername(String mail) throws UsernameNotFoundException {
-		//Personne personne = personneRepository.findByMail(mail);
-		Personne personne = personneRepository.findByNom(mail);
+		System.out.println("user " + mail +personneRepository.findByMail(mail) );
+		Personne personne = personneRepository.findByMail(mail);
+		System.out.println("Personne connectée : " + personne);
+		//Personne personne = personneRepository.findByNom(mail);
 		if (null == personne) {
 			throw new UsernameNotFoundException("No user with email " + mail);
 		} else {

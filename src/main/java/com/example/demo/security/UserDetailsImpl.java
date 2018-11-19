@@ -49,9 +49,10 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		System.out.println("NOM :" + personne.getNom());
-		return personne.getNom();
-		// return personne.getMail();
+		//System.out.println("NOM :" + personne.getNom());
+		//return personne.getNom();
+		System.out.println("mail: "+personne.getMail());
+		return personne.getMail();
 	}
 
 	@Override

@@ -24,7 +24,9 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findByTitre(@Param("titre") String titre);
 	
 	
-	// http://localhost:8080/articles/search/findByTag?tag=sport
+
 	List<Article> findByTag(@Param("tag") String tag);
+	
+	List<Article> findByAuteurArticle(@Param("auteur") String auteur);
 	
 }

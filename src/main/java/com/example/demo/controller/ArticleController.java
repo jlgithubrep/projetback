@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,8 +53,11 @@ public class ArticleController {
 		return articleRepository.saveAndFlush(article);
 	}
 	
-//	@GetMapping(value = "/personneLogin", params = { "mail","mdp" })
-//	public Personne sayHello(@RequestParam(value = "mail") String mail, @RequestParam(value="mdp") String mdp) {
-//		return personneRepository.findByMailAndMdp(mail, mdp);
-//	}
+	@Secured("ROLE_JOURNALISTE")
+	@GetMapping(value = "/articlesparauteur", params = { "auteur" })
+	public List<Article> sayHello(@RequestParam(value = "auteur") String auteur) {
+		return articleRepository.findByAuteurArticle(auteur);
+	}
+	
+	
 }
