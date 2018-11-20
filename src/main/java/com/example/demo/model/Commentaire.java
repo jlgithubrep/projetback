@@ -3,25 +3,26 @@ package com.example.demo.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
-
 /**
  * The persistent class for the commentaire database table.
  * 
  */
 @Entity
-@NamedQuery(name="Commentaire.findAll", query="SELECT c FROM Commentaire c")
+@NamedQuery(name = "Commentaire.findAll", query = "SELECT c FROM Commentaire c")
 @CrossOrigin
 public class Commentaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCommentaire;
 
 	private String auteurCommentaire;
@@ -34,16 +35,23 @@ public class Commentaire implements Serializable {
 
 	private String etatCommentaire;
 
-	//bi-directional many-to-one association to Article
-	//@ManyToOne
-	@ManyToOne(cascade=(CascadeType.ALL))
+	// bi-directional many-to-one association to Article
+	// @ManyToOne
+	// ici persist, remove de l'autre coté
+
+//	@ManyToOne(cascade=(CascadeType.ALL))
+//	@JsonIgnore
+//	@JoinColumn(name="idArticle")
+//	private Article article;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idArticle", nullable = false)
 	@JsonIgnore
-	@JoinColumn(name="idArticle")
 	private Article article;
 
-	//bi-directional many-to-one association to Personne
-	//@ManyToOne
-	@JoinColumn(name="idPersonne")
+	// bi-directional many-to-one association to Personne
+	// @ManyToOne
+	@JoinColumn(name = "idPersonne")
 	private Personne personne;
 
 	public Commentaire() {

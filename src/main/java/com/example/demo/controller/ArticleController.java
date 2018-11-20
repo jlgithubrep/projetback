@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,8 @@ public class ArticleController {
 		return articleRepository.save(article);
 	}
 	
-	@Secured("ROLE_JOURNALISTE")
+	//@Secured("ROLE_JOURNALISTE")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_JOURNALISTE')")
 	@DeleteMapping(path="/articleDelete/{id}", produces= {"application/json"})
 	public void deleteArticle(@PathVariable("id") int id) {
 		articleRepository.deleteById(id);

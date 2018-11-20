@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the article database table.
  * 
  */
 @Entity
-@NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
+@NamedQuery(name = "Article.findAll", query = "SELECT a FROM Article a")
 @CrossOrigin
 public class Article implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_article")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_article")
 	private Integer idArticle;
 
 	private String auteurArticle;
@@ -40,9 +39,14 @@ public class Article implements Serializable {
 
 	private String titre;
 
-	//bi-directional many-to-one association to Commentaire
-	//@OneToMany
-	@OneToMany(mappedBy="article")
+	// bi-directional many-to-one association to Commentaire
+	// @OneToMany
+	// @OneToMany(mappedBy="article")
+
+	// @OneToMany(mappedBy="article")
+//	private List<Redaction> redactions;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "article")
 	private List<Commentaire> commentaires;
 
 //	//bi-directional many-to-one association to Redaction
