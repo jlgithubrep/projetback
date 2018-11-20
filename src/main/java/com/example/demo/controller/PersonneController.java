@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 import java.util.List;
+
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -52,6 +54,11 @@ public class PersonneController {
 	@GetMapping(value = "/personneLogin", params = { "mail","mdp" })
 	public Personne sayHello(@RequestParam(value = "mail") String mail, @RequestParam(value="mdp") String mdp) {
 		return personneRepository.findByMailAndMdp(mail, mdp);
+	}
+	
+	@GetMapping(path="/allemailpersonnes", produces= {"application/json"})
+	public List<String> getAllEmail(){
+		return personneRepository.findAllMail();
 	}
 	
 	

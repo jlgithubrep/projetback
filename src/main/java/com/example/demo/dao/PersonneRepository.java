@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.example.demo.model.Personne;
 
@@ -18,6 +19,11 @@ public interface PersonneRepository extends JpaRepository<Personne, Integer> {
 	
 	
 	public Personne findByMail(@Param("mail") String mail);
+	
+	@Query("SELECT p.mail FROM Personne p")
+	List<String> findAllMail();
+	
+	
 	// http://localhost:8080/personnes
 	// http://localhost:8080/personnes/2
 
