@@ -3,12 +3,9 @@ package com.example.demo.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.example.demo.model.Article;
-import com.example.demo.model.Personne;
 
 //@RepositoryRestResource(
 //collectionResourceRel="articles",
@@ -28,5 +25,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findByTag(@Param("tag") String tag);
 	
 	List<Article> findByAuteurArticle(@Param("auteur") String auteur);
+	
+	@Query("SELECT a.tag FROM Article a")
+	List<String> findAllTag();
 	
 }

@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -16,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.ArticleRepository;
-import com.example.demo.dao.PersonneRepository;
 import com.example.demo.model.Article;
-import com.example.demo.model.Personne;
 
 @CrossOrigin
 @RestController
@@ -64,5 +64,16 @@ public class ArticleController {
 		return articleRepository.findByAuteurArticle(auteur);
 	}
 	
+	@GetMapping(path="/allarticlestags", produces= {"application/json"})
+	public Set<String> getAllTags(){
+		List<String> tags = articleRepository.findAllTag();
+		Set<String> uniqueTags = new HashSet<String>(tags);// Set est une collection sans valeurs doubles
+		return uniqueTags;
+	}
+	
+	@GetMapping(path="/articlesbytag", produces = {"application/json"}, params= {"tag"})
+	public List<Article> getArticlesByTag(@RequestParam(value="tag") String tag){
+		return articleRepository.findByTag(tag);
+	}
 	
 }
